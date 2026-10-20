@@ -1,0 +1,13 @@
+{
+  "targets": {
+    "release": {
+      "outFile": "build/chart_core.wasm",
+      "textFile": "build/chart_core.wat",
+      "optimize": true,
+      "bindings": "esm"
+    }
+  },
+  "options": {
+    "exportRuntime": true
+  }
+}

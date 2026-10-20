@@ -1,0 +1,13 @@
+{
+  "name": "traderoom-chart",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "asbuild": "asc assembly/index.ts -o build/chart_core.wasm -t build/chart_core.wat --optimize --bindings esm --exportRuntime",
+    "build": "npm run asbuild",
+    "dev": "npm run asbuild && python3 -m http.server 8765"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.27.36"
+  }
+}

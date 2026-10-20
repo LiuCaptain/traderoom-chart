@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traderoom Chart · WASM + WebGL2</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="toolbar">
+        <div class="brand">
+          <span class="brand-mark">REA</span>
+          <strong>Traderoom Chart</strong>
+        </div>
+        <div class="controls">
+          <label>
+            类型
+            <select id="chartType">
+              <option value="candle" selected>Candle</option>
+              <option value="zone">Zone</option>
+              <option value="bar">Bar</option>
+              <option value="linear">Linear</option>
+              <option value="heikenAshi">HeikenAshi</option>
+            </select>
+          </label>
+          <label>
+            周期
+            <select id="candleSize">
+              <option value="1">1s</option>
+              <option value="5">5s</option>
+              <option value="10">10s</option>
+              <option value="15">15s</option>
+              <option value="30">30s</option>
+              <option value="60" selected>1m</option>
+              <option value="120">2m</option>
+              <option value="300">5m</option>
+              <option value="600">10m</option>
+              <option value="900">15m</option>
+              <option value="1800">30m</option>
+              <option value="3600">1h</option>
+            </select>
+          </label>
+          <label class="check">
+            <input id="toggleVolume" type="checkbox" checked />
+            成交量
+          </label>
+          <button id="focusLast" type="button">回到最新</button>
+          <button id="toggleLive" type="button" class="primary">暂停实时</button>
+        </div>
+      </header>
+
+      <main class="stage">
+        <canvas id="chart" data-onboarding-target="chart"></canvas>
+        <canvas id="overlay" class="overlay"></canvas>
+        <aside class="hud" id="hud">
+          <div class="hud-asset" id="hudAsset">EURUSD · OTC</div>
+          <div class="hud-row"><span>O</span><b id="hudOpen">—</b></div>
+          <div class="hud-row"><span>H</span><b id="hudHigh">—</b></div>
+          <div class="hud-row"><span>L</span><b id="hudLow">—</b></div>
+          <div class="hud-row"><span>C</span><b id="hudClose">—</b></div>
+          <div class="hud-row"><span>V</span><b id="hudVol">—</b></div>
+          <div class="hud-row"><span>Δ</span><b id="hudDelta">—</b></div>
+        </aside>
+        <button
+          id="returnToLast"
+          class="return-to-last"
+          type="button"
+          hidden
+          aria-hidden="true"
+          title="focusLastValue"
+        >
+          <span class="return-icon">↩</span>
+          最新
+        </button>
+      </main>
+
+      <footer class="status">
+        <span id="statusText">加载 chart_core.wasm…</span>
+        <span id="fpsText">0 FPS</span>
+      </footer>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
